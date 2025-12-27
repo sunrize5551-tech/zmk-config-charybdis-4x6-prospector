@@ -1,22 +1,13 @@
-#define INPUT_EV_KEY 0x01
-#define INPUT_EV_REL 0x02
-#define INPUT_EV_ABS 0x03
-#define INPUT_EV_MSC 0x04
-#define INPUT_EV_VENDOR_START 0xf0
-#define INPUT_EV_VENDOR_STOP 0xff
-
 #define INPUT_REL_X 0x00
 #define INPUT_REL_Y 0x01
-#define INPUT_REL_WHEEL 0x08
-#define INPUT_REL_HWHEEL 0x06
-#define INPUT_REL_MISC 0x09
 
 /*
- * Fix for Zephyr binding pixart,pmw3610:
- * - 'motion-gpios' is REQUIRED.
- * - Do not use 'irq-gpios' here.
+ * Fix for Zephyr 4.1 pixart,pmw3610 binding:
+ * - zephyr,axis-x (required)
+ * - zephyr,axis-y (highly likely required too)
+ * - motion-gpios (required in this binding set)
  *
- * Keep the same pin you were using before (gpio0 6), just rename property.
+ * Keep bus + CS + motion pin as you were using (no guessing wiring yet).
  */
 
 &pro_micro_spi {
@@ -30,11 +21,14 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
 
+        /* Required by binding */
         motion-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 
+        /* Required by binding (this is the error you're seeing) */
+        zephyr,axis-x = <INPUT_REL_X>;
+        zephyr,axis-y = <INPUT_REL_Y>;
+
+        /* Optional; safe default */
         cpi = <800>;
-        evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_X>;
-        y-input-code = <INPUT_REL_Y>;
     };
 };
