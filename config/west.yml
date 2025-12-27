@@ -4,18 +4,25 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: badjeff
       url-base: https://github.com/badjeff
-    - name: carrefinho
-      url-base: https://github.com/carrefinho
+
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
+
+    # PMW3610 driver module
     - name: zmk-pmw3610-driver
       remote: badjeff
-      revision: zmk-0.4
-    - name: prospector-zmk-module
-      remote: carrefinho
-      revision: core/zephyr-4-1
+      revision: main
+
+    # (옵션) charybdis shield/module을 따로 쓰는 구조면 여기에 추가
+    # 네 레포는 이미 boards/shields를 포함하고 있어 보이므로,
+    # 우선은 추가하지 않고 진행한다.
+    # - name: zmk-keyboards-charybdis
+    #   url: https://github.com/...
+    #   revision: main
+    #   path: modules/zmk-keyboards-charybdis
+
   self:
     path: config
