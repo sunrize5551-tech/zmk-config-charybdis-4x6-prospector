@@ -11,31 +11,21 @@
 #define INPUT_REL_HWHEEL 0x06           /**< Relative horizontal wheel coordinate */
 #define INPUT_REL_MISC 0x09             /**< Relative misc coordinate */
 
-&pinctrl {
-    spi0_default: spi0_default {
-        group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 8)>,
-                <NRF_PSEL(SPIM_MOSI, 0, 17)>,
-                <NRF_PSEL(SPIM_MISO, 0, 17)>;
-        };
-    };
-
-    spi0_sleep: spi0_sleep {
-        group1 {
-            psels = <NRF_PSEL(SPIM_SCK, 0, 8)>,
-                <NRF_PSEL(SPIM_MOSI, 0, 17)>,
-                <NRF_PSEL(SPIM_MISO, 0, 17)>;
-            low-power-enable;
-        };
-    };
-};
+/*
+ * IMPORTANT:
+ * The previous version defined MOSI and MISO on the same pin (P0.17),
+ * which breaks SPI. To avoid hard-wiring wrong pins, we remove the custom
+ * pinctrl and use the board's default spi0 pinctrl.
+ *
+ * If the sensor still does not work after this change, we will re-introduce
+ * pinctrl with the correct SCK/MOSI/MISO pins that match your wiring.
+ */
 
 &spi0 {
     status = "okay";
     compatible = "nordic,nrf-spim";
-    pinctrl-0 = <&spi0_default>;
-    pinctrl-1 = <&spi0_sleep>;
-    pinctrl-names = "default", "sleep";
+
+    /* Use board default pinctrl for spi0 */
     cs-gpios = <&gpio0 20 GPIO_ACTIVE_LOW>;
 
     trackball: trackball@0 {
