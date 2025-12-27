@@ -13,8 +13,6 @@
 };
 
 / {
-    /* chosen { ... } 부분 삭제함 (에러 방지) */
-
     keymap {
         compatible = "zmk,keymap";
 
@@ -26,8 +24,9 @@
 &kp LEFT_WIN  &kp A   &kp S   &kp D           &kp F         &kp G               &kp DEL        &kp H            &kp J   &kp K   &kp L     &kp EQUAL
 &to 1         &kp Z   &kp X   &kp C           &kp V         &kp LEFT_CONTROL    &kp PERIOD     &kp B            &kp N   &kp M   &kp FSLH  &kp COMMA
                               &kp LEFT_SHIFT  &kp LEFT_ALT  &kp SPACE           &kp ENTER      &kp RIGHT_SHIFT
-                                              &mkp MB1      &mkp MB2            &kp RIGHT_ALT
+                                              &mkp MB1      &mkp MB2            &kp RIGHT_ALT  &none  &none 
             >;
+            /* ↑↑ 마지막 줄에 &none &none 2개를 추가해서 58개를 맞췄습니다! */
         };
 
         Lower {
@@ -38,8 +37,9 @@
 &kp LEFT_WIN  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_CLR    &none   &kp LEFT  &kp DOWN  &kp RIGHT  &kp BACKSLASH     &kp SEMICOLON
 &to 0         &none         &none         &none         &none         &none         &none   &none     &none     &none      &kp MINUS         &kp RIGHT_CONTROL
                                           &trans        &trans        &trans        &trans  &trans
-                                                        &trans        &trans        &trans
+                                                        &trans        &trans        &trans  &trans &trans
             >;
+            /* ↑↑ 여기도 &trans 2개 추가! */
         };
     };
 };
