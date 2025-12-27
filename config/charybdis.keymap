@@ -26,8 +26,7 @@
                               &kp LEFT_SHIFT  &kp LEFT_ALT  &kp SPACE           &kp ENTER      &kp RIGHT_SHIFT
                                               &mkp MB1      &mkp MB2            &kp RIGHT_ALT  &none  &none 
             >;
-            /* ↑↑ 마지막 줄에 &none &none 2개를 추가해서 58개를 맞췄습니다! */
-        };
+                    };
 
         Lower {
             label = "Lower";
@@ -39,7 +38,6 @@
                                           &trans        &trans        &trans        &trans  &trans
                                                         &trans        &trans        &trans  &trans &trans
             >;
-            /* ↑↑ 여기도 &trans 2개 추가! */
-        };
+                 };
     };
 };
