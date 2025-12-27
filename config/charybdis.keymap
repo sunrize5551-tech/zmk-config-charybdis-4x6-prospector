@@ -13,10 +13,7 @@
 };
 
 / {
-    /* ★★★ 여기가 핵심입니다! 배선도 지정 ★★★ */
-    chosen {
-        zmk,matrix_transform = &default_transform;
-    };
+    /* chosen 부분 삭제함 (원상복구) */
 
     keymap {
         compatible = "zmk,keymap";
