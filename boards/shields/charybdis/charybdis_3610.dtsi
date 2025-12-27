@@ -12,12 +12,8 @@
 #define INPUT_REL_MISC 0x09
 
 /*
- * Fix:
- * Do NOT modify &spi0 directly (Zephyr 4.1 requires pinctrl-0 for nrf-spim).
- * Attach the PMW3610 device to &pro_micro_spi, which is the board-provided SPI bus
- * for Pro Micro compatible controllers in ZMK.
- *
- * Keep CS/IRQ as gpio0 pins (do not guess new wiring).
+ * Attach PMW3610 device to the Pro Micro SPI bus to avoid nrf-spim pinctrl issues.
+ * Keep CS/IRQ as the GPIO pins you were already using (no guessing new wiring).
  */
 
 &pro_micro_spi {
