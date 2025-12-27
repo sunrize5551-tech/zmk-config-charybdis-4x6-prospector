@@ -2,12 +2,11 @@
 #define INPUT_REL_Y 0x01
 
 /*
- * Fix for Zephyr 4.1 pixart,pmw3610 binding:
- * - zephyr,axis-x (required)
- * - zephyr,axis-y (highly likely required too)
- * - motion-gpios (required in this binding set)
- *
- * Keep bus + CS + motion pin as you were using (no guessing wiring yet).
+ * Zephyr 4.1 pixart,pmw3610 binding notes:
+ * - motion-gpios: required
+ * - zephyr,axis-x / zephyr,axis-y: required
+ * - "cpi" is NOT a declared DT property in pixart,pmw3610.yaml in your build,
+ *   so do NOT set it here (it breaks the build).
  */
 
 &pro_micro_spi {
@@ -21,14 +20,9 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
 
-        /* Required by binding */
         motion-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 
-        /* Required by binding (this is the error you're seeing) */
         zephyr,axis-x = <INPUT_REL_X>;
         zephyr,axis-y = <INPUT_REL_Y>;
-
-        /* Optional; safe default */
-        cpi = <800>;
     };
 };
