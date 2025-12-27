@@ -12,8 +12,11 @@
 #define INPUT_REL_MISC 0x09
 
 /*
- * Keep your bus + CS/IRQ as-is.
- * Fix likely binding mismatch by using the common compatible.
+ * Fix for Zephyr binding pixart,pmw3610:
+ * - 'motion-gpios' is REQUIRED.
+ * - Do not use 'irq-gpios' here.
+ *
+ * Keep the same pin you were using before (gpio0 6), just rename property.
  */
 
 &pro_micro_spi {
@@ -23,12 +26,11 @@
 
     trackball: trackball@0 {
         status = "okay";
-
         compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
 
-        irq-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        motion-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 
         cpi = <800>;
         evt-type = <INPUT_EV_REL>;
