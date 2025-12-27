@@ -12,8 +12,8 @@
 #define INPUT_REL_MISC 0x09
 
 /*
- * Attach PMW3610 device to the Pro Micro SPI bus to avoid nrf-spim pinctrl issues.
- * Keep CS/IRQ as the GPIO pins you were already using (no guessing new wiring).
+ * Keep your bus + CS/IRQ as-is.
+ * Fix likely binding mismatch by using the common compatible.
  */
 
 &pro_micro_spi {
@@ -23,7 +23,8 @@
 
     trackball: trackball@0 {
         status = "okay";
-        compatible = "pixart,pmw3610-alt";
+
+        compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
 
