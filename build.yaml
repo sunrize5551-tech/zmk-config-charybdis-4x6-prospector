@@ -1,18 +1,15 @@
 include:
-  # Dongle (xiao_ble)
   - board: xiao_ble
     shield: charybdis_dongle
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=n
 
-  # Left / Right
   - board: nice_nano
     shield: charybdis_left
 
   - board: nice_nano
     shield: charybdis_right
 
-  # Resets
   - board: xiao_ble
     shield: settings_reset
 
