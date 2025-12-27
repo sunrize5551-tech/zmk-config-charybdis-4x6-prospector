@@ -1,14 +1,6 @@
 #define INPUT_REL_X 0x00
 #define INPUT_REL_Y 0x01
 
-/*
- * Zephyr 4.1 pixart,pmw3610 binding notes:
- * - motion-gpios: required
- * - zephyr,axis-x / zephyr,axis-y: required
- * - "cpi" is NOT a declared DT property in pixart,pmw3610.yaml in your build,
- *   so do NOT set it here (it breaks the build).
- */
-
 &pro_micro_spi {
     status = "okay";
 
@@ -19,6 +11,10 @@
         compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
+
+        /* IMPORTANT: try SPI mode 3 */
+        spi-cpol;
+        spi-cpha;
 
         motion-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 
