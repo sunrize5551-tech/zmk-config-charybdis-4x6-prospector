@@ -6,6 +6,13 @@
  * Keep CS/motion pins the same for now.
  */
 
+/ {
+    /* This label is referenced by charybdis_right.overlay (&default_transform). */
+    default_transform: default_transform {
+        compatible = "zmk,kscan-transform";
+    };
+};
+
 &spi0 {
     status = "okay";
 
